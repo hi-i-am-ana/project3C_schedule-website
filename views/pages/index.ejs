@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pinocchio's page</title>
+  <title>Mr.Coffee schedule management</title>
   <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
-  <h1>Hello my name is <%=myName%></h1>
-  <p>my aim in life is to be a real boy</p>
-  <h3>Here are some of my best friends</h3>
+  <h1>Welcome to mr.coffee schedule management website</h1>
+  <p>Please be careful</p>
+  <h3>This is a placeholder</h3>
   <ul>
-        <%for(let i=0; i < myBestFriends.length; i++) {%>
-            <li><%= myBestFriends[i].name%></li>
+        <%for(let i=0; i < schedules.length; i++) {%>
+            <li><%= `${schedules[i].username} ${schedules[i].day} ${schedules[i].start_time} ${schedules[i].end_time}`%></li>
         <%}%>
   </ul>
 </body>
