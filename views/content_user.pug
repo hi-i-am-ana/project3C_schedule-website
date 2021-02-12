@@ -1,0 +1,8 @@
+extends layout.pug
+
+block content
+  div.info
+    p= `first name: ${user['firstname']}`
+    p= `last name: ${user['lastname']}`
+    p= `email: ${user['email']}`
+    p= `password: ${user['password']}`
