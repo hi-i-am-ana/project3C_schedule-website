@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mr.Coffee schedule management</title>
+  <title>Schedule management | Mr.Coffee</title>
   <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
-  <h1>Welcome to mr.coffee schedule management website</h1>
+  <!-- Add navbar, footer, header -->
+  <h1>Welcome to Mr.Coffee schedule management website</h1>
   <p>Please be careful</p>
   <h3>This is a placeholder</h3>
   <ul>
         <%for(let i=0; i < schedules.length; i++) {%>
-            <li><%= `${schedules[i].username} ${schedules[i].day} ${schedules[i].start_time} ${schedules[i].end_time}`%></li>
+            <li><%= `${schedules[i].schedule_id} ${schedules[i].username} ${schedules[i].day} ${schedules[i].start_time} ${schedules[i].end_time}`%></li>
         <%}%>
   </ul>
 </body>

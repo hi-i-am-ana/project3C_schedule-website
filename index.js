@@ -24,31 +24,40 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
   database.any('SELECT * from schedule;')
   .then((schedules) => {
-    console.log(schedules)
     res.render('pages/index', {schedules: schedules});
   })
   .catch((err) => {
-    console.error(err)
     res.render('pages/error', {
       err: err
-    })
-  })
-console.log('i happened')
+    });
+  });
 });
 
 // Display form for new schedule
-// app.get('/new', (req, res) => res.render('new_schedule', { users: data.users }));
+app.get('/new', (req, res) => res.render('pages/new_schedule'));
 
 // Post new schedule
-// app.post('/', (req, res) => {
-//   const newSchedule = {
-//     'user_id': Number(req.body.user_id),
-//     'day': Number(req.body.day),
-//     'start_at': req.body.start_at,
-//     'end_at': req.body.end_at
-//   };
-//   data.schedules.push(newSchedule);
-//   res.render('content_schedules', { schedules: data.schedules });
-// });
+app.post('/new', (req, res) => {
+  // The second parameter can be:
+  // 1) an array of values - to replace all $1, $2, ... variables:
+  // const newSchedule = [req.body.username, Number(req.body.day), req.body.start_time, req.body.end_time];
+  // database.none('INSERT INTO schedule(username, day, start_time, end_time) VALUES ($1, $2, $3, $4);', newSchedule)
+  // 2) an object - query has to use the Named Parameter syntax:
+  newSchedule = {
+    username: req.body.username,
+    day: Number(req.body.day),
+    start_time: req.body.start_time,
+    end_time: req.body.end_time
+  };
+  database.none('INSERT INTO schedule(username, day, start_time, end_time) VALUES (${newSchedule.username}, ${newSchedule.day}, ${newSchedule.start_time}, ${newSchedule.end_time});', {newSchedule})
+  .then(() => {
+    res.render('pages/new_schedule');
+  })
+  .catch((err) => {
+    res.render('pages/error', {
+      err: err
+    });
+  });
+});
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
