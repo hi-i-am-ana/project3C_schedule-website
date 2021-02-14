@@ -7,14 +7,34 @@
   <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
-  <!-- Add navbar, footer, header -->
-  <h1>Welcome to Mr.Coffee schedule management website</h1>
-  <p>Please be careful</p>
-  <h3>This is a placeholder</h3>
-  <ul>
+  <div class="body-container">
+    <header>
+      <nav>
+        <img class="nav-logo" src="/static/full_logo_white.png" alt="mr.coffee white logo">
+        <ul>
+          <li><a href="/">Display schedule</a></li>
+          <li><a href="/new">Add new schedule</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Welcome to Mr.Coffee schedule management website</h1>
+      <h2>Mr.Coffee schedule</h2>
+      <div class="schedule-table">
+        <div class="schedule-title" id="schedule-title-id">Schedule ID</div>
+        <div class="schedule-title">Username</div>
+        <div class="schedule-title">Day</div>
+        <div class="schedule-title">Start Time</div>
+        <div class="schedule-title" id="schedule-title-end-time">End Time</div>
         <%for(let i=0; i < schedules.length; i++) {%>
-            <li><%= `${schedules[i].schedule_id} ${schedules[i].username} ${schedules[i].day} ${schedules[i].start_time} ${schedules[i].end_time}`%></li>
+          <div class="schedule-field"><%= schedules[i].schedule_id%></div>
+          <div class="schedule-field schedule-field-username"><%= schedules[i].username%></div>
+          <div class="schedule-field schedule-field-day"><%= schedules[i].day%></div>
+          <div class="schedule-field"><%= schedules[i].start_time%></div>
+          <div class="schedule-field"><%= schedules[i].end_time%></div>
         <%}%>
-  </ul>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

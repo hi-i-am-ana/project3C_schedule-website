@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const database = require('./database');
 
 const app = express();
-const PORT = process.env.port || 3000;
+const PORT = process.env.port || 4000;
 
 // Use http request logger
 app.use(morgan('dev'));
@@ -21,8 +21,19 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 // Get list of schedules (home route)
+// Use each method for query to execute callback function to convert day from number to string
 app.get('/', (req, res) => {
-  database.any('SELECT * from schedule;')
+  database.each('SELECT * FROM schedule ORDER BY username ASC, day ASC, start_time ASC, end_time ASC;', [], row => {
+    const days = {
+      1: 'Monday',
+      2: 'Tuesday',
+      3: 'Wednesday',
+      4: 'Thursday',
+      5: 'Friday',
+      6: 'Saturday'
+    }
+    row.day = days[row.day];
+  })
   .then((schedules) => {
     res.render('pages/index', {schedules: schedules});
   })
@@ -45,7 +56,7 @@ app.post('/new', (req, res) => {
   // 2) an object - query has to use the Named Parameter syntax:
   newSchedule = {
     username: req.body.username,
-    day: Number(req.body.day),
+    day: +req.body.day,
     start_time: req.body.start_time,
     end_time: req.body.end_time
   };

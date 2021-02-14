@@ -5,30 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Schedule management - New schedule | Mr.Coffee</title>
   <link rel="stylesheet" href="/static/index.css">
+  <script src="https://kit.fontawesome.com/0c3a972dba.js" crossorigin="anonymous"></script>
+  <script src="/static/form.js" defer></script>
 </head>
 <body>
-  <form method="post" action="/new">
-    <label for="username">Username *</label>
-    <input id="username" type="text" name="username" required placeholder="Enter your username...">
+  <div class="body-container">
+    <header>
+      <nav>
+        <img class="nav-logo" src="/static/full_logo_white.png" alt="mr.coffee white logo">
+        <ul>
+          <li><a href="/">Display schedule</a></li>
+          <li><a href="/new">Add new schedule</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Add new schedule</h2>
+      <form id="form" method="post" action="/new" novalidate>
+        <fieldset>
+          <label for="username">Username *</label>
+          <input class="form-field" id="username" type="text" name="username" required>
+          <p class="form-alert" id="username-empty-alert">
+            Please enter your surname
+          </p>
+        </fieldset>
 
-    <label for="day">Day *</label>
-    <select id="day" name="day" required>
-      <option disabled selected value="">Select day...</option>
-      <option value='1'>Monday</option>
-      <option value='2'>Tuesday</option>
-      <option value='3'>Wednesday</option>
-      <option value='4'>Tuesday</option>
-      <option value='5'>Friday</option>
-      <option value='6'>Saturday</option>
-      <option value='7'>Sunday</option>
-    </select>
+        <fieldset>
+          <label for="day">Day *</label>
+          <select class="form-field" id="day" name="day" required>
+            <option disabled selected value=""></option>
+            <option value='1'>Monday</option>
+            <option value='2'>Tuesday</option>
+            <option value='3'>Wednesday</option>
+            <option value='4'>Thursday</option>
+            <option value='5'>Friday</option>
+            <option value='6'>Saturday</option>
+            <option value='7'>Sunday</option>
+          </select>
+          <p class="form-alert" id="day-empty-alert">
+            Please select a day
+          </p>
+        </fieldset>
 
-    <label for="start_time">Start time *</label>
-    <input id="start_time" type="time" name="start_time" required placeholder="Enter start time">
-    <label for="end_time">Start time *</label>
-    <input id="end_time" type="time" name="end_time" required placeholder="Enter end time">
+        <fieldset>
+          <label for="start_time">Start time *</label>
+          <input class="form-field" id="start_time" type="time" name="start_time" required>
+          <p class="form-alert" id="start-time-empty-alert">
+            Please select start time
+          </p>
+        </fieldset>
 
-    <button type="submit">Save</button>
-  </form>
+        <fieldset>
+          <label for="end_time">End time *</label>
+          <input class="form-field" id="end_time" type="time" name="end_time" required>
+          <p class="form-alert" id="end-time-empty-alert">
+            Please select end time
+          </p>
+          <p class="form-alert" id="time-invalid-alert">
+            End time must be later than start time
+          </p>
+        </fieldset>
+
+        <button type="submit">Save</button>
+      </form>
+
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <i class="fas fa-check modal-text"></i>
+          <p class="modal-text">Thank you!</p>
+          <p class="modal-text">Your schedule has been saved</p>
+          <button id="close-modal-button" type="button">Close</button>
+        </div>
+      </div>
+    </main>
 </body>
 </html>
