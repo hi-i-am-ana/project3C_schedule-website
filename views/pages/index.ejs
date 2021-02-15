@@ -3,22 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule management | Mr.Coffee</title>
+  <title>Schedule management - Schedule list | Mr.Coffee</title>
   <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
   <div class="body-container">
-    <header>
-      <nav>
-        <img class="nav-logo" src="/static/full_logo_white.png" alt="mr.coffee white logo">
-        <ul>
-          <li><a href="/">Display schedule</a></li>
-          <li><a href="/new">Add new schedule</a></li>
-        </ul>
-      </nav>
-    </header>
+    <%- include('header_include'); -%>
     <main>
-      <h1>Welcome to Mr.Coffee schedule management website</h1>
+      <h1>Welcome to Mr.Coffee schedule management system</h1>
       <h2>Mr.Coffee schedule</h2>
       <div class="schedule-table">
         <div class="schedule-title" id="schedule-title-id">Schedule ID</div>

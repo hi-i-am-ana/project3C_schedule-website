@@ -11,29 +11,30 @@ html {
 }
 
 body {
-  background-image: url("/static/background.jpg");
+  padding: 5rem 0;
+  background-image: url("/static/assets/background.jpg");
   background-size: cover;
   background-attachment: fixed;
-  color: #ffffff;
-  padding: 5rem 0;
   font-family: 'Raleway', sans-serif;
+  color: #ffffff;
   font-size: 1.6rem;
   text-align: center;
 }
 
 .body-container {
-  background: rgba( 255, 255, 255, 0.25);
+  width: 80%;
+  margin: auto;
+  min-height: calc(100vh - 10rem);
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(15, 32, 16, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18);
-  width: 80%;
-  margin: auto;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 main {
-  width: 80%;
+  width: 90%;
   margin: auto;
   padding: 3rem 0;
 }
@@ -41,6 +42,10 @@ main {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+h1, h2 {
+  margin-bottom: 3rem;
 }
 
 nav {
@@ -68,22 +73,18 @@ nav > ul a:hover {
   color: #0b260e;
 }
 
-h1, h2 {
-  margin-bottom: 3rem;
-}
-
+/* index page */
 .schedule-table {
   display: flex;
   flex-wrap: wrap;
-  color: #0b260e;
   width: 80%;
   margin: auto;
-  background: rgba( 255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(15, 32, 16, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18);
+  color: #0b260e;
 }
 
 .schedule-title, .schedule-field {
@@ -93,13 +94,13 @@ h1, h2 {
 }
 
 .schedule-title {
-  font-size: 1.8rem;
   position: sticky;
   top: 0;
-  background: rgba( 255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 8px 32px 0 rgba(15, 32, 16, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  font-size: 1.8rem;
 }
 
 #schedule-title-id {
@@ -115,17 +116,20 @@ h1, h2 {
 }
 
 .schedule-field-username, .schedule-field-day {
-  text-align: left;
   padding-left: 2rem;
-}
-
-form {
   text-align: left;
+}
+/* end index page */
+
+/* new schedule page, new schedule submit success page */
+form {
   width: 60%;
   margin: auto;
+  text-align: left;
 }
 
 fieldset {
+  position: relative;
   margin-bottom: 2rem;
   border: 0;
 }
@@ -135,17 +139,15 @@ fieldset {
   padding: 1rem;
   margin-top: 1rem;
   border: 0;
-  background-color: #bbc1c9;
-  color: #0b260e;
-  font-family: inherit;
-  font-size: inherit;
-
-  background: rgba( 255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(15, 32, 16, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #0b260e;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .form-field:focus {
@@ -153,7 +155,9 @@ fieldset {
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
 }
 
-button {
+button, .button {
+  display: block;
+  width: 100%;
   padding: 1.2rem 5rem;
   background-color: #25823f;
   border: none;
@@ -162,8 +166,6 @@ button {
   color: inherit;
   font-size: inherit;
   cursor: pointer;
-  display: block;
-  width: 100%;
 }
 
 button:hover {
@@ -178,21 +180,40 @@ button:focus {
   outline: 0;
 }
 
-.form-alert {
-  display: none;
-  color: #ffa300;
-  font-size: 1.5rem;
+.tooltip-form-alert {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 0.3rem;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: red;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.tooltip-form-alert::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
 }
 
 .modal {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgba(0,0,0,0.5);
   border-radius: 10px;
 }
@@ -200,12 +221,12 @@ button:focus {
 .modal-content {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  margin: 10% auto;
+  width: 50%;
+  margin: 20% auto;
+  padding: 2rem;
   background: #ffffff;
   border-radius: 10px;
   color: #0b260e;
-  padding: 2rem;
 }
 
 .modal-text {
@@ -214,6 +235,39 @@ button:focus {
 
 #close-modal-button {
   color: #ffffff;
-  width: 50%;
   margin: auto;
+  width: initial;
 }
+/* end new schedule page, new schedule submit success page */
+
+/* media 768 */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 9px;
+  }
+  .schedule-table {
+    width: 100%;
+  }
+}
+/* end media 768 */
+
+/* media 576 */
+@media screen and (max-width: 576px) {
+  html {
+    font-size: 8px;
+  }
+
+  body {
+    padding: 1rem 0;
+  }
+
+  .body-container {
+    width: 98%;
+    min-height: calc(100vh - 2rem);
+  }
+
+  .schedule-title {
+    font-size: 1.6rem;
+  }
+}
+/* end media 576 */

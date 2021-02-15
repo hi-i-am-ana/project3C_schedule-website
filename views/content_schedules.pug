@@ -1,9 +1,0 @@
-extends layout.pug
-
-block content
-  each item in schedules
-    div.info
-      p= `user id: ${item['user_id']}`
-      p= `day: ${item['day']}`
-      p= `start time: ${item['start_at']}`
-      p= `end time: ${item['end_at']}`

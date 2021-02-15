@@ -13,9 +13,6 @@ const startTimeEmptyAlert = document.getElementById('start-time-empty-alert');
 const endTimeEmptyAlert = document.getElementById('end-time-empty-alert');
 const timeInvalidAlert = document.getElementById('time-invalid-alert');
 
-// Select close modal window button
-const closeModalButton = document.getElementById('close-modal-button');
-
 // Create variable to save validation status
 let validForm;
 
@@ -26,78 +23,56 @@ form.onsubmit = (event) => {
   const startTimeValue = startTime.value;
   const endTimeValue = endTime.value;
 
-
-  event.preventDefault();
   clearValidation();
 
-  // Validate username (not empty)
+  // Validate username (must not be empty)
   if (!inputNotEmpty(usernameValue)) {
-    usernameEmptyAlert.style.display = 'block';
-    username.style.border = 'solid 1px #ffa300';
-    validForm = false;
+    setInvalid(usernameEmptyAlert, username);
   };
 
-  // Validate day (not empty)
+  // Validate day (must not be empty)
   if (!inputNotEmpty(dayValue)) {
-    dayEmptyAlert.style.display = 'block';
-    day.style.border = 'solid 1px #ffa300';
-    validForm = false;
+    setInvalid(dayEmptyAlert, day);
   };
 
-  console.log(startTimeValue)
-  console.log(endTimeValue)
-  console.log(dayValue)
-  console.log(usernameValue)
-
-  // Validate start time (not empty)
+  // Validate start time (must be not empty)
   if (!inputNotEmpty(startTimeValue)) {
-    startTimeEmptyAlert.style.display = 'block';
-    startTime.style.border = 'solid 1px #ffa300';
-    validForm = false;
+    setInvalid(startTimeEmptyAlert, startTime);
   };
 
-  // Validate day (not empty)
+  // Validate end time (must be not empty)
   if (!inputNotEmpty(endTimeValue)) {
-    endTimeEmptyAlert.style.display = 'block';
-    endTime.style.border = 'solid 1px #ffa300';
-    validForm = false;
+    setInvalid(endTimeEmptyAlert, endTime);
   };
 
-  // Validate time (end time is later than start time)
+  // Validate time (end time must be later than start time)
   if (!timeValid(startTimeValue, endTimeValue) && inputNotEmpty(startTimeValue) && inputNotEmpty(endTimeValue)) {
-    timeInvalidAlert.style.display = 'block';
-    endTime.style.border = 'solid 1px #ffa300';
-    validForm = false;
+    setInvalid(timeInvalidAlert, endTime);
   };
 
   if (!validForm) {
-    return false;
-  } else {
-    event.target.reset();
-    clearValidation();
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    return true;
+    event.preventDefault();
   };
-};
-
-closeModalButton.onclick = () => {
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
 };
 
 const inputNotEmpty = (inputValue) => inputValue !== '';
 
 const  timeValid = (startTimeValue, endTimeValue) => startTimeValue < endTimeValue;
 
+const setInvalid = (inputAlert, input) => {
+  inputAlert.style.visibility = 'visible';
+  input.style.border = 'solid 1px red';
+  validForm = false;
+};
+
 const clearValidation = () => {
   validForm = true;
 
-  usernameEmptyAlert.style.display = 'none';
-  dayEmptyAlert.style.display = 'none';
-  startTimeEmptyAlert.style.display = 'none';
-  endTimeEmptyAlert.style.display = 'none';
-  timeInvalidAlert.style.display = 'none';
+  usernameEmptyAlert.style.visibility = 'hidden';
+  dayEmptyAlert.style.visibility = 'hidden';
+  startTimeEmptyAlert.style.visibility = 'hidden';
+  endTimeEmptyAlert.style.visibility = 'hidden';
+  timeInvalidAlert.style.visibility = 'hidden';
 
   username.style.border = '';
   day.style.border = '';

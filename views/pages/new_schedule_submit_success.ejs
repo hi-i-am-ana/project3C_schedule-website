@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule management - New schedule | Mr.Coffee</title>
+  <title>Schedule management - New schedule - Submit success | Mr.Coffee</title>
   <link rel="stylesheet" href="/static/index.css">
   <script src="https://kit.fontawesome.com/0c3a972dba.js" crossorigin="anonymous"></script>
-  <script src="/static/form.js" defer></script>
+  <!-- <script src="/static/form.js" defer></script> -->
 </head>
 <body>
   <div class="body-container">
@@ -50,6 +50,15 @@
 
         <button type="submit">Save</button>
       </form>
+
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <i class="fas fa-check modal-text"></i>
+          <p class="modal-text">Thank you!</p>
+          <p class="modal-text">Your schedule has been saved</p>
+          <a class="button" href="/new" id="close-modal-button" type="button">Close</a>
+        </div>
+      </div>
     </main>
 </body>
 </html>

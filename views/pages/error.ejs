@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error</title>
+  <title>Schedule management - Error | Mr.Coffee</title>
   <link rel="stylesheet" href="/static/index.css">
 </head>
 <body>
-  <h1>Error</h1>
-  <p><%=err.message%></p>
+  <div class="body-container">
+    <%- include('header_include'); -%>
+    <main>
+      <h2>Sorry, something went wrong</h2>
+      <p><%=err.message%></p>
+    </main>
+  </div>
 </body>
 </html>

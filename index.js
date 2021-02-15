@@ -10,7 +10,7 @@ const PORT = process.env.port || 4000;
 
 // Use http request logger
 app.use(morgan('dev'));
-// Serve static files using express.static built-in middleware
+// Serve static files using express.static middleware
 app.use('/static', express.static(path.join(__dirname, 'public')));
 // Use body-parsing middleware
 app.use(express.json())
@@ -21,8 +21,8 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 // Get list of schedules (home route)
-// Use each method for query to execute callback function to convert day from number to string
 app.get('/', (req, res) => {
+  // Use 'each' method for query to execute callback function to convert day from number to string
   database.each('SELECT * FROM schedule ORDER BY username ASC, day ASC, start_time ASC, end_time ASC;', [], row => {
     const days = {
       1: 'Monday',
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// Display form for new schedule
+// Display form for adding new schedule
 app.get('/new', (req, res) => res.render('pages/new_schedule'));
 
 // Post new schedule
@@ -62,7 +62,8 @@ app.post('/new', (req, res) => {
   };
   database.none('INSERT INTO schedule(username, day, start_time, end_time) VALUES (${newSchedule.username}, ${newSchedule.day}, ${newSchedule.start_time}, ${newSchedule.end_time});', {newSchedule})
   .then(() => {
-    res.render('pages/new_schedule');
+    // Redirect to get route which displays form with success submit modal window (have to use 'redirect' here (not render), otherwise URL will be misleading)
+    res.redirect('/new/success');
   })
   .catch((err) => {
     res.render('pages/error', {
@@ -70,5 +71,8 @@ app.post('/new', (req, res) => {
     });
   });
 });
+
+// Display form with success submit modal window (will be used by 'redirect')
+app.get('/new/success', (req, res) => res.render('pages/new_schedule_submit_success'));
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
