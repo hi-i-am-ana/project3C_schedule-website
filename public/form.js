@@ -35,12 +35,12 @@ form.onsubmit = (event) => {
     setInvalid(dayEmptyAlert, day);
   };
 
-  // Validate start time (must be not empty)
+  // Validate start time (must not be empty)
   if (!inputNotEmpty(startTimeValue)) {
     setInvalid(startTimeEmptyAlert, startTime);
   };
 
-  // Validate end time (must be not empty)
+  // Validate end time (must not be empty)
   if (!inputNotEmpty(endTimeValue)) {
     setInvalid(endTimeEmptyAlert, endTime);
   };

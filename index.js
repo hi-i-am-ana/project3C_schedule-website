@@ -48,6 +48,7 @@ app.get('/', (req, res) => {
 app.get('/new', (req, res) => res.render('pages/new_schedule'));
 
 // Post new schedule
+// TODO: Check if pair username + day already exists in database
 app.post('/new', (req, res) => {
   // The second parameter can be:
   // 1) an array of values - to replace all $1, $2, ... variables:
