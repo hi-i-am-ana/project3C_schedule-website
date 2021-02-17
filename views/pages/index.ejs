@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule management - Schedule list | Mr.Coffee</title>
-  <link rel="stylesheet" href="/static/index.css">
-</head>
-<body>
-  <div class="body-container">
-    <%- include('include_header'); -%>
-    <main>
-      <h1>Welcome to Mr.Coffee schedule management system</h1>
-      <h2>Mr.Coffee schedule</h2>
-      <div class="schedule-table">
-        <div class="schedule-title">Schedule ID</div>
-        <div class="schedule-title">Username</div>
-        <div class="schedule-title">Day</div>
-        <div class="schedule-title">Start Time</div>
-        <div class="schedule-title">End Time</div>
-        <%for(let i=0; i < schedules.length; i++) {%>
-          <div class="schedule-field"><%= schedules[i].schedule_id%></div>
-          <div class="schedule-field"><%= schedules[i].username%></div>
-          <div class="schedule-field"><%= schedules[i].day%></div>
-          <div class="schedule-field"><%= schedules[i].start_time%></div>
-          <div class="schedule-field"><%= schedules[i].end_time%></div>
-        <%}%>
-      </div>
-    </main>
-  </div>
-</body>
-</html>
+<h1>Welcome to Mr.Coffee schedule management system</h1>
+<h2>Mr.Coffee schedule</h2>
+<div class="schedule-table">
+  <div class="schedule-title">Schedule ID</div>
+  <div class="schedule-title">Username</div>
+  <div class="schedule-title">Day</div>
+  <div class="schedule-title">Start Time</div>
+  <div class="schedule-title">End Time</div>
+  <%for(let i=0; i < schedules.length; i++) {%>
+    <div class="schedule-field"><%= schedules[i].schedule_id%></div>
+    <div class="schedule-field"><%= schedules[i].username%></div>
+    <div class="schedule-field"><%= schedules[i].day%></div>
+    <div class="schedule-field"><%= schedules[i].start_time%></div>
+    <div class="schedule-field"><%= schedules[i].end_time%></div>
+  <%}%>
+</div>

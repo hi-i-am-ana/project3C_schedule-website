@@ -1,6 +1,7 @@
 const express = require('express');
 const crypto = require('crypto');
 const path = require('path');
+const expressLayouts = require('express-ejs-layouts');
 const morgan = require('morgan');
 
 const database = require('./database');
@@ -13,12 +14,16 @@ app.use(morgan('dev'));
 // Serve static files using express.static middleware
 app.use('/static', express.static(path.join(__dirname, 'public')));
 // Use body-parsing middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// Use express ejs layouts
+app.use(expressLayouts);
 
 // Set to use ejs templates
 app.set('views', './views');
 app.set('view engine', 'ejs');
+// Set script blocks extraction (to put script blocks in <%- script %>)
+app.set("layout extractScripts", true);
 
 // Get list of schedules (home route)
 app.get('/', (req, res) => {
@@ -35,17 +40,15 @@ app.get('/', (req, res) => {
     row.day = days[row.day];
   })
   .then((schedules) => {
-    res.render('pages/index', {schedules: schedules});
+    res.render('pages/index', {schedules: schedules, title: 'Schedule management - Schedule list | Mr.Coffee'});
   })
   .catch((err) => {
-    res.render('pages/error', {
-      err: err
-    });
+    res.render('pages/error', {err: err, title: 'Schedule management - Error | Mr.Coffee'});
   });
 });
 
 // Display form for adding new schedule
-app.get('/new', (req, res) => res.render('pages/new_schedule'));
+app.get('/new', (req, res) => res.render('pages/new_schedule', {title: 'Schedule management - New schedule | Mr.Coffee'}));
 
 // Post new schedule
 // TODO: Check if pair username + day already exists in database
@@ -63,17 +66,15 @@ app.post('/new', (req, res) => {
   };
   database.none('INSERT INTO schedule(username, day, start_time, end_time) VALUES (${newSchedule.username}, ${newSchedule.day}, ${newSchedule.start_time}, ${newSchedule.end_time});', {newSchedule})
   .then(() => {
-    // Redirect to get route which displays form with success submit modal window (have to use 'redirect' here (not render), otherwise URL will be misleading)
+    // Redirect to get route which displays form with success submit modal window (use 'redirect' (not render), otherwise URL will be misleading)
     res.redirect('/new/success');
   })
   .catch((err) => {
-    res.render('pages/error', {
-      err: err
-    });
+    res.render('pages/error', {err: err, title: 'Schedule management - Error | Mr.Coffee'});
   });
 });
 
 // Display form with success submit modal window (will be used by 'redirect')
-app.get('/new/success', (req, res) => res.render('pages/new_schedule_submit_success'));
+app.get('/new/success', (req, res) => res.render('pages/new_schedule_submit_success', {title: 'Schedule management - New schedule - Submit success | Mr.Coffee'}));
 
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))

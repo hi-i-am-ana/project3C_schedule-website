@@ -181,7 +181,7 @@ button:focus {
 }
 
 .tooltip-form-alert {
-  visibility: hidden;
+  display: none;
   position: absolute;
   z-index: 1;
   top: 0;

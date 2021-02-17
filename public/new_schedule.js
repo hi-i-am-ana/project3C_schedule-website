@@ -60,7 +60,7 @@ const inputNotEmpty = (inputValue) => inputValue !== '';
 const  timeValid = (startTimeValue, endTimeValue) => startTimeValue < endTimeValue;
 
 const setInvalid = (inputAlert, input) => {
-  inputAlert.style.visibility = 'visible';
+  inputAlert.style.display = 'inline';
   input.style.border = 'solid 1px red';
   validForm = false;
 };
@@ -68,11 +68,11 @@ const setInvalid = (inputAlert, input) => {
 const clearValidation = () => {
   validForm = true;
 
-  usernameEmptyAlert.style.visibility = 'hidden';
-  dayEmptyAlert.style.visibility = 'hidden';
-  startTimeEmptyAlert.style.visibility = 'hidden';
-  endTimeEmptyAlert.style.visibility = 'hidden';
-  timeInvalidAlert.style.visibility = 'hidden';
+  usernameEmptyAlert.style.display = 'none';
+  dayEmptyAlert.style.display = 'none';
+  startTimeEmptyAlert.style.display = 'none';
+  endTimeEmptyAlert.style.display = 'none';
+  timeInvalidAlert.style.display = 'none';
 
   username.style.border = '';
   day.style.border = '';

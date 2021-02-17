@@ -1,64 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule management - New schedule - Submit success | Mr.Coffee</title>
-  <link rel="stylesheet" href="/static/index.css">
-  <script src="https://kit.fontawesome.com/0c3a972dba.js" crossorigin="anonymous"></script>
-  <!-- <script src="/static/form.js" defer></script> -->
-</head>
-<body>
-  <div class="body-container">
-    <%- include('include_header'); -%>
-    <main>
-      <h2>Add new schedule</h2>
-      <form id="form" method="post" action="/new" novalidate>
-        <fieldset>
-          <label for="username">Username *</label>
-          <input class="form-field" id="username" type="text" name="username">
-          <span class="tooltip-form-alert" id="username-empty-alert">Please enter your username</span>
-        </fieldset>
+<h2>Add new schedule</h2>
 
-        <fieldset>
-          <label for="day">Day *</label>
-          <select class="form-field" id="day" name="day">
-            <option disabled selected value=""></option>
-            <option value='1'>Monday</option>
-            <option value='2'>Tuesday</option>
-            <option value='3'>Wednesday</option>
-            <option value='4'>Thursday</option>
-            <option value='5'>Friday</option>
-            <option value='6'>Saturday</option>
-            <option value='7'>Sunday</option>
-          </select>
-          <span class="tooltip-form-alert" id="day-empty-alert">Please select a day</span>
-        </fieldset>
+<form id="form" method="post" action="/new" novalidate>
+  <fieldset>
+    <label for="username">Username *</label>
+    <input class="form-field" id="username" type="text" name="username">
+    <span class="tooltip-form-alert" id="username-empty-alert">Please enter your username</span>
+  </fieldset>
 
-        <fieldset>
-          <label for="start_time">Start time *</label>
-          <input class="form-field" id="start_time" type="time" name="start_time">
-          <span class="tooltip-form-alert" id="start-time-empty-alert">Please select start time</span>
-        </fieldset>
+  <fieldset>
+    <label for="day">Day *</label>
+    <select class="form-field" id="day" name="day">
+      <option disabled selected value=""></option>
+      <option value='1'>Monday</option>
+      <option value='2'>Tuesday</option>
+      <option value='3'>Wednesday</option>
+      <option value='4'>Thursday</option>
+      <option value='5'>Friday</option>
+      <option value='6'>Saturday</option>
+      <option value='7'>Sunday</option>
+    </select>
+    <span class="tooltip-form-alert" id="day-empty-alert">Please select a day</span>
+  </fieldset>
 
-        <fieldset>
-          <label for="end_time">End time *</label>
-          <input class="form-field" id="end_time" type="time" name="end_time">
-          <span class="tooltip-form-alert" id="end-time-empty-alert">Please select end time</span>
-          <span class="tooltip-form-alert" id="time-invalid-alert">End time must be later that start time</span>
-        </fieldset>
+  <fieldset>
+    <label for="start_time">Start time *</label>
+    <input class="form-field" id="start_time" type="time" name="start_time">
+    <span class="tooltip-form-alert" id="start-time-empty-alert">Please select start time</span>
+  </fieldset>
 
-        <button type="submit">Save</button>
-      </form>
+  <fieldset>
+    <label for="end_time">End time *</label>
+    <input class="form-field" id="end_time" type="time" name="end_time">
+    <span class="tooltip-form-alert" id="end-time-empty-alert">Please select end time</span>
+    <span class="tooltip-form-alert" id="time-invalid-alert">End time must be later that start time</span>
+  </fieldset>
 
-      <div class="modal" id="modal">
-        <div class="modal-content">
-          <i class="fas fa-check modal-text"></i>
-          <p class="modal-text">Thank you!</p>
-          <p class="modal-text">Your schedule has been saved</p>
-          <a class="button" href="/new" id="close-modal-button" type="button">Close</a>
-        </div>
-      </div>
-    </main>
-</body>
-</html>
+  <button type="submit">Save</button>
+</form>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <i class="fas fa-check modal-text"></i>
+    <p class="modal-text">Thank you!</p>
+    <p class="modal-text">Your schedule has been saved</p>
+    <a class="button" href="/new" id="close-modal-button" type="button">Close</a>
+  </div>
+</div>
