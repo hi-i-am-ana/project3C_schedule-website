@@ -8,10 +8,14 @@ const endTime = document.getElementById('end_time');
 
 // Select validation alerts
 const usernameEmptyAlert = document.getElementById('username-empty-alert');
+const usernameInvalidAlert = document.getElementById('username-invalid-alert');
 const dayEmptyAlert = document.getElementById('day-empty-alert');
 const startTimeEmptyAlert = document.getElementById('start-time-empty-alert');
 const endTimeEmptyAlert = document.getElementById('end-time-empty-alert');
 const timeInvalidAlert = document.getElementById('time-invalid-alert');
+
+const closeModalButton = document.getElementById('close-modal-button');
+const modal = document.getElementById('modal');
 
 // Create variable to save validation status
 let validForm;
@@ -28,6 +32,8 @@ form.onsubmit = (event) => {
   // Validate username (must not be empty)
   if (!inputNotEmpty(usernameValue)) {
     setInvalid(usernameEmptyAlert, username);
+  } else if (!usernameValid(usernameValue)) {
+    setInvalid(usernameInvalidAlert, username);
   };
 
   // Validate day (must not be empty)
@@ -55,9 +61,18 @@ form.onsubmit = (event) => {
   };
 };
 
+closeModalButton.onclick = (event) => {
+  modal.classList.remove('display-block');
+}
+
 const inputNotEmpty = (inputValue) => inputValue !== '';
 
 const  timeValid = (startTimeValue, endTimeValue) => startTimeValue < endTimeValue;
+
+const usernameValid = (usernameValue) => {
+  const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
+  return usernameRegex.test(usernameValue);
+}
 
 const setInvalid = (inputAlert, input) => {
   inputAlert.style.display = 'inline';
@@ -69,6 +84,7 @@ const clearValidation = () => {
   validForm = true;
 
   usernameEmptyAlert.style.display = 'none';
+  usernameInvalidAlert.style.display = 'none';
   dayEmptyAlert.style.display = 'none';
   startTimeEmptyAlert.style.display = 'none';
   endTimeEmptyAlert.style.display = 'none';

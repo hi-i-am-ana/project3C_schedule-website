@@ -33,12 +33,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-main {
-  width: 90%;
-  margin: auto;
-  padding: 3rem 0;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -71,6 +65,12 @@ nav > ul a {
 
 nav > ul a:hover {
   color: #0b260e;
+}
+
+main {
+  width: 90%;
+  margin: auto;
+  padding: 3rem 0;
 }
 
 /* index page */
@@ -154,7 +154,7 @@ fieldset {
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
 }
 
-button, .button {
+button {
   display: block;
   width: 100%;
   padding: 1.2rem 5rem;
@@ -207,7 +207,7 @@ button:focus {
 }
 
 .modal {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -216,6 +216,10 @@ button:focus {
   height: 100%;
   background-color: rgba(0,0,0,0.5);
   border-radius: 10px;
+}
+
+.display-block {
+  display: block;
 }
 
 .modal-content {

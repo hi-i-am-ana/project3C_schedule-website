@@ -5,6 +5,7 @@
     <label for="username">Username *</label>
     <input class="form-field" id="username" type="text" name="username">
     <span class="tooltip-form-alert" id="username-empty-alert">Please enter your username</span>
+    <span class="tooltip-form-alert" id="username-invalid-alert">Characters a-z, 0-9, "_" and ".", 30 chars max</span>
   </fieldset>
 
   <fieldset>
@@ -37,5 +38,25 @@
 
   <button type="submit">Save</button>
 </form>
+
+<%if (modal === 'opened') {%>
+  <div class="modal display-block" id="modal">
+    <div class="modal-content">
+      <i class="fas fa-check modal-text"></i>
+      <p class="modal-text">Thank you!</p>
+      <p class="modal-text">Your schedule has been saved</p>
+      <button id="close-modal-button" type="button">Close</a>
+    </div>
+  </div>
+<%} else {%>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <i class="fas fa-check modal-text"></i>
+      <p class="modal-text">Thank you!</p>
+      <p class="modal-text">Your schedule has been saved</p>
+      <button id="close-modal-button" type="button">Close</a>
+    </div>
+  </div>
+<%}%>
 
 <script src="/static/new_schedule.js" defer></script>
