@@ -1,6 +1,5 @@
 # project3C_schedule-website
 ## Mr.Coffee schedule management website
-[Open website](https://hi-i-am-ana.github.io/project3C_schedule-website)
 ## Languages/Frameworks/Technology used:
 - PostgreSQL
 - HTML, CSS, JavaScript
